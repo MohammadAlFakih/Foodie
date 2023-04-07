@@ -26,6 +26,7 @@ html {
     opacity: 90%;
     box-shadow: 10px 5px 5px black;
     min-width: 650px;
+    flex-wrap:nowrap;
 }
 
 .options {
