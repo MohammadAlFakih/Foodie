@@ -7,10 +7,11 @@
   
 }
 body{
-  min-height: 100vh;
+  min-width: 1000px;
+  height: auto;
   width: 100%;
   background-image:url("bois.jpg");
-  background-size: 100% 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
