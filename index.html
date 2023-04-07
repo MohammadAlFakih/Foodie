@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie</title>
+    <link href="indexstyle.css" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <header class="header">
+            <h1 class="title">Foodie.</h1>
+            <nav class="options">
+                <a class="options1" href="#home">Home</a>
+                <a class="options2" href="#todayoffer">Today Offer</a>
+                <a class="options3" href="#menutype">Menu</a>
+                <a class="options4" href="contact.html">Contact</a>
+            </nav>
+        </header>
+        <section id="home">
+            <div class="home">
+                <video autoplay muted loop id="myVideo">
+                    <source src="mixkit-chicken-burger-with-french-fries-3537-medium.mp4" type="video/mp4">
+                </video>
+                <img src="foodie_Logo_pos.png" class="logo">
+                <button class="order" onclick="bookorder()"  id="bookorder" href="Payment.html">
+                    <div class="ordertxt">Book Your Order Now</div>
+                </button>
+            </div>
+            <div class="about">
+                Welcome to Foodie</span>, where we believe that the choices we make about what we<br>
+                eat have a powerful impact on our lifestyle.<br>
+                Our mission is to encourage communities to eat real food while sourcing all ingredients from trusted<br>
+                partners and local farmers.
+            </div>
+        </section>
+        <!--      Spinner      -->
+        <section id="todayoffer">
+            <div class="adventure">Our offer for today<br>Spin to get sale!!!</div>
+            <div class="spindiv"><iframe src="Spinner.html" class="spinner" id="myiframe"></iframe></div>
+        </section>
+        <!-- Menu -->
+        <img src="background.jpg" class="backimg">
+        <div class="menutype" id="menutype">
+            <button onclick="f1()" style="margin-top: 10px;" class="choose">Sandwiches</button>
+            <button onclick="f2()" style="margin-top: 10px;" class="choose">Salad</button>
+            <button onclick="f3()" style="margin-top: 10px;" class="choose">Drinks</button>
+        </div>
+        <section class="menu" id="menu">
+
+            <div class="salad" id="salad">
+                <div class="line1">
+                    <div class="pic">
+                        <img src="salmonsalad.jpg" class="img">
+                        <div class="inf">
+                            Salmond Salad
+                        </div>
+                        <input type="number" value="0" class="howmany" min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(0)">Save</button>
+                        <button class="remove" onclick="remove(0)">Remove</button>
+                        <div class="prices">$3</div>
+                    </div>
+                    <div class="pic">
+                        <img src="springsalad.jpg" class="img">
+                        <div class="inf">
+                            Spring Salad
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(1)">Save</button>
+                        <button class="remove" onclick="remove(1)">Remove</button>
+                        <div class="prices">$4</div>
+                    </div>
+                    <div class="pic">
+                        <img src="smokywinter.jpg" class="img">
+                        <div class="inf">
+                            Smoky Winter
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(2)">Save</button>
+                        <button class="remove" onclick="remove(2)">Remove</button>
+                        <div class="prices">$4.5</div>
+                    </div>
+                </div>
+                <div class="line2">
+                    <div class="pic">
+                        <img src="nuttychicken.jpg" class="img">
+                        <div class="inf">
+                            Nutty Chicken
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(3)">Save</button>
+                        <button class="remove" onclick="remove(3)">Remove</button>
+                        <div class="prices">$5</div>
+                    </div>
+                    <div class="pic">
+                        <img src="mexican.jpg" class="img">
+                        <div class="inf">
+                            Mexican Salad
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(4)">Save</button>
+                        <button class="remove" onclick="remove(4)">Remove</button>
+                        <div class="prices">$5</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sandwiches" id="sandwiches">
+                <div class="line1">
+                    <div class="pic">
+                        <img src="chickensandwich.jpg" class="img">
+                        <div class="inf">
+                            Chicken Sandwich
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(5)">Save</button>
+                        <button class="remove" onclick="remove(5)">Remove</button>
+                        <div class="pricesa">$7</div>
+                    </div>
+                    <div class="pic">
+                        <img src="mozarella.jpg" class="img">
+                        <div class="inf">
+                            Mozarella<br>(7 pieces)
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(6)">Save</button>
+                        <button class="remove" onclick="remove(6)">Remove</button>
+                        <div class="pricesa">$5</div>
+                    </div>
+                    <div class="pic">
+                        <img src="hotchicken.jpg" class="img">
+                        <div class="inf">
+                            Hot Chicken
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(7)">Save</button>
+                        <button class="remove" onclick="remove(7)">Remove</button>
+                        <div class="pricesa">$6</div>
+                    </div>
+                </div>
+                <div class="line2">
+                    <div class="pic">
+                        <img src="spagetti.jpg" class="img">
+                        <div class="inf">
+                            Spaghetti and MeatBalls
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(8)">Save</button>
+                        <button class="remove" onclick="remove(8)">Remove</button>
+                        <div class="pricesa">$5</div>
+                    </div>
+                </div>
+            </div>
+            <div class="drinks" id="drinks">
+                <div class="line1">
+                    <div class="pic">
+                        <img src="cola.jpg_480Wx480H" class="img">
+                        <div class="inf">
+                            Coca Cola
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(9)">Save</button>
+                        <button class="remove" onclick="remove(9)">Remove</button>
+                        <div class="priced">$1.5</div>
+                    </div>
+                    <div class="pic">
+                        <img src="mirinda.jpg" class="img">
+                        <div class="inf">
+                            Mirinda
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(10)">Save</button>
+                        <button class="remove" onclick="remove(10)">Remove</button>
+                        <div class="priced">$1</div>
+                    </div>
+                    <div class="pic">
+                        <img src="7up.jpg" class="img">
+                        <div class="inf">
+                            7UP
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(11)">Save</button>
+                        <button class="remove" onclick="remove(11)">Remove</button>
+                        <div class="priced">$1</div>
+                    </div>
+                </div>
+                <div class="line2">
+                    <div class="pic">
+                        <img src="coladiet.jpg" class="img">
+                        <div class="inf">
+                            Cola Diet
+                        </div>
+                        <input type="number" value="0" class="howmany"  min="0" max="10">
+                        <div class="quantityvalidation">Please choose a valid quantity</div>
+                        <button class="buy" onclick="confirm(12)">Save</button>
+                        <button class="remove" onclick="remove(12)">Remove</button>
+                        <div class="priced">$2</div>
+                    </div>
+                </div>
+            </div>
+            <div class="initial" id="initial"></div>
+        </section>
+        <section class="end">
+            <div class="socialmedia">
+                <a href=""><img src="instalogo.png" class="mediapic" ></a>
+                <a href=""><img src="fblogo.jpg" class="mediapic"> </a>
+            </div>
+            <div class="copyright">&copy;2023 Foodie. All rights reserved</div>
+        </section>
+    </main>
+    <script src="JSindex.js"></script>
+</body>
+
+</html>

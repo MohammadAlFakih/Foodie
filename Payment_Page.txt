@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Restaurant Payment method</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Page deticated for the payment process
+            for FOODIE RESTAURNANT">
+        <meta name="keywords"
+            content="Restaurant,Payment,Foodie,total,cash,credit card">
+        <style>
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: rgb(2, 2, 31);
+}
+.payment-form {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width : 500px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: whitesmoke;
+}
+
+input[type="text"], select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+input[type="number"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(172, 166, 84);
+}
+
+h1 {
+  text-align: center;
+  color: rgb(172, 166, 84);
+}
+p{
+    text-align: left;
+  color: rgb(172, 166, 84);
+}
+/* Styles for the input fields */
+input[type="date"],
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+  </style>
+    </head>
+    <body>
+        <h1 id="payment-amount"></h1>
+        <form action="process_payment.php" method="post" id="payment-form">
+            <label for="payment-method">Payment Method:</label>
+            <select id="payment-method" name="payment-method" required>
+                <option value="">-- Please select --</option>
+                <option value="paypal">PayPal</option>
+                <option value="credit-card">Credit Card</option>
+            </select><br><br>
+            <div id="credit-card-form" class="payment-form">
+                <label for="card-number">Credit Card Number:</label>
+                <input type="text" id="card-number" name="card-number"
+                    maxlength="16" required><br><br>
+
+                <label for="card-expiry">Expiration Month:</label>
+                <input type="number" id="card-expiry-month" name="card-expiry-month" required
+                    value="" min="01" max="12"><br><br>
+                  
+                    <label for="card-expiry">Expiration Year:</label>
+                    <input type="number" id="card-expiry-year" name="card-expiry-year" required
+                        value="" min='2023'><br><br>
+
+                <label for="card-cvv">CVV:</label>
+                <input type="text" id="card-cvv" name="card-cvv" maxlength="3"><br><br>
+            </div>
+
+
+
+            <div id="paypal-form" class="payment-form">
+                <label for="paypal-email">PayPal Email Address:</label>
+                <input type="email" id="paypal-email" name="paypal-email"
+                    required><br><br>
+                <label for="paypal-password">Password:</label>
+                <input type="password" id="paypal-password"
+                    name="paypal-password"
+                    required>
+            </div><br><br>
+
+            <label for="consent">
+                <input type="checkbox" id="consent" name="consent">
+                I consent to withdraw the above amount from my chosen payment
+                method.
+            </label><br><br>
+
+            <button type="submit" id="submit-button" disabled>Pay Now</button>
+        </form>
+
+        <script>
+            // Get the form elements
+            const cardNumber = document.getElementById('card-number');
+            const cardExpiryYear = document.getElementById('card-expiry-year');
+            const cardExpiryMonth = document.getElementById('card-expiry-month');
+            const cardCvv = document.getElementById('card-cvv');
+            const paypalEmail = document.getElementById('paypal-email');
+            const paypalPassword = document.getElementById('paypal-password');
+            const consent = document.getElementById('consent');
+            const submitButton = document.getElementById('submit-button');
+            const paymentMethod = document.getElementById('payment-method');
+            const form = document.querySelector('form');
+            const paypalForm = document.getElementById('paypal-form');
+            const creditCardForm = document.getElementById('credit-card-form');
+            const successMessage = document.getElementById('success-message');
+
+            // Get the payment amount from the previous page
+           var payment=50;
+
+                // Set the payment amount in the <p> element
+    var paymentAmountElement = document.getElementById('payment-amount');
+    paymentAmountElement.textContent =  'Great This will be: ' + payment+'$';
+
+// Set the automatic form changer based on the method of payment
+    paymentMethod.addEventListener('change', function(event) {
+  const selectedOption = event.target.value;
+
+  if (selectedOption === 'paypal') {
+    paypalForm.style.display = 'block';
+    creditCardForm.style.display = 'none';
+  } else if (selectedOption === 'credit-card') {
+    paypalForm.style.display = 'none';
+    creditCardForm.style.display = 'block';
+  } else {
+    paypalForm.style.display = 'none';
+    creditCardForm.style.display = 'none';
+  }
+});
+
+function validateCreditCardNumber(number) {
+
+  // Check that the number is 13-16 digits long
+  if (number.length < 13 || number.length > 16) {
+    return false;
+  }
+
+  // Check that the number passes the Luhn algorithm
+  var sum = 0;
+  for (var i = 0; i < number.length; i++) {
+    var digit = parseInt(number[i]);
+
+    if ((number.length - i) % 2 === 0) {
+      digit *= 2;
+      if (digit > 9) {
+        digit -= 9;
+      }
+    }
+
+    sum += digit;
+  }
+
+  return sum % 10 === 0;
+}
+
+function handleSubmit(event) {
+      event.preventDefault();
+
+      var creditCardNumber = document.getElementById('credit-card-number').value;
+
+      if (validateCreditCardNumber(creditCardNumber)) {
+        alert('Credit card number is valid!');
+      } else {
+        alert('Credit card number is invalid!');
+      }
+    }
+        
+            // Enable the submit button when consent is given
+            consent.addEventListener('change', () => {
+              if (consent.checked) {
+                submitButton.disabled = false;
+              } else {
+                submitButton.disabled = true;
+              }
+            });
+
+        
+            // Restrict input for card number and expiry date fields
+            cardNumber.addEventListener('input', (event) => {
+              event.target.value = event.target.value.replace(/[^0-9]/g, '').slice(0,16);
+            });
+        
+            cardExpiry.addEventListener('input', (event) => {
+              event.target.value = event.target.value.replace(/[^0-9\/]/g, '').slice(0,5);
+            });
+        
+            // Restrict input for cvv field
+            cardCvv.addEventListener('input', (event) => {
+              event.target.value = event.target.value.replace(/[^0-9]/g, '').slice(0,3);
+            });
+
+          </script>
+    </body>
+</html>

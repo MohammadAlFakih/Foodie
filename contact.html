@@ -1,0 +1,81 @@
+ <!DOCTYPE html>
+<html >
+  <head>
+    <link rel="stylesheet" href="contactstyle.css">
+    
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+   </head>
+<body>
+<script>
+function fill()
+{
+alert("Your request is registred.");
+}
+</script>
+  <img src="foodi-removebg-preview.png" width="400px" height="400px">
+  <div class="container">
+    <div class="content">
+      <div class="left-side">
+        <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one" style="color:white">Lebanon-Beirut</div>
+          <div class="text-two"style="color:white">Clemenceau street 200</div>
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one"style="color:white">+961 03450250</div>
+          <div class="text-two"style="color:white">+961 71234567</div>
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one"style="color:white">Beirutrestaurant@gmail.com</div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="topic-text">Send us a message</div>
+        <p>If you likes any food in our restaurant, you can send us message from here. It's my pleasure to help you.</p>
+      <form action="mailto:mhamadbyfakih@gmail.com" enctype="text/plain" method="post">
+        <div class="input-box">
+          <input type="text" placeholder=" First name" required class="data">
+        </div>
+		 <div class="input-box">
+          <input type="text" placeholder="Last name" required class="data">
+        </div>
+		<div class="input-box">
+          <input type="text" placeholder="Phone number" class="data" onblur="checknb()" id="number">
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Email" required class="data">
+        </div>
+        <div class="input-box message-box">
+        Enter your message:</br><textarea rows="10" cols="50" required class="data"></textarea>
+        </div>
+        <div class="button">
+          <input type="submit" value="Send Now">
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
+  <script>
+    function checknb(){
+      var x=document.getElementById("number").value;
+      
+      for(var i=0;i<x.length;i++)
+      {
+        if(x[i]!='9' && x[i]!='8' && x[i]!='7' && x[i]!='6' && x[i]!='5'&& x[i]!='4' && x[i]!='3'&& x[i]!='2' && x[i]!='0'&& x[i]!='1'){
+          var invalidnb=1;
+        }
+      }
+      if(invalidnb==1){
+        alert("Enter a valid Phone Number!");
+        document.getElementById("number").value="";
+        document.getElementById("number").focus();
+      }
+    }
+  </script>
+</body>
+</html>

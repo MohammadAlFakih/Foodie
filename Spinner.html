@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="one" id="one">1%</div>
+        <div class="two" id="two">2%</div>
+        <div class="three" id="three">3%</div>
+        <div class="four" id="four">4%</div>
+        <div class="five" id="five">5%</div>
+        <div class="six" id="six">6%</div>
+    </div>
+    <span class="mid-item"></span>
+    <button id="spin">Spin</button>
+    <div class="stopper"></div>
+    <script>
+        sessionStorage.setItem("sale_amount",0);
+        let container = document.querySelector(".container");
+        let btn = document.getElementById("spin");
+        
+        btn.onclick = function () {
+            
+            sessionStorage.setItem("sale_amount",0);
+            // container.style.transform="rotate(124deg)";
+            var number = parseInt(Math.random() * 10000);
+            var round = 360 * 5 + number;
+            number = number % 360;
+            container.style.transform = "rotate(" + round + "deg)";
+            btn.disabled = true;
+                if (number <= 30 || number >= 330){
+                    sessionStorage.setItem("sale_amount",1);
+                    window.parent.postMessage(1, "*");}
+                if (number > 30 && number <= 90){
+                sessionStorage.setItem("sale_amount",6);
+                window.parent.postMessage(6, "*");}
+                if (number > 90 && number <= 150){
+                sessionStorage.setItem("sale_amount",5);
+                window.parent.postMessage(5, "*");}
+                if (number > 150 && number <= 210){
+                sessionStorage.setItem("sale_amount",4);
+                window.parent.postMessage(4, "*");}
+                if (number > 210 && number < 270){
+                sessionStorage.setItem("sale_amount",3);
+                window.parent.postMessage(3, "*");}
+                if (number > 270 && number < 330){
+                sessionStorage.setItem("sale_amount",2);
+                window.parent.postMessage(2, "*");}
+            
+        }
+
+    </script>
+</body>
+
+</html>
